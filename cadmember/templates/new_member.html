@@ -3,7 +3,7 @@
 
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
+    <div class="container">
     <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
@@ -13,6 +13,7 @@
         <input type="submit" value="Cadastrar" class="btn btn-primary"> 
 
     </form>
+    </div>
 
 
 
