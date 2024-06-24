@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+
+{% block content %}
+
+    <div class="conteiner">
+        <h1>Lista de Membros</h1>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Data de Nascimento</th>
+                    <th scope="col">Cidade de Nascimento</th>
+                    <th scope="col">Estado de Nascimento</th>
+                    <th scope="col">Data de Batismo</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">CEP</th>
+                </tr>
+            </thead>
+            <Tbody>
+                {% for member in members %}
+                <tr>
+                    <td>{{ member.name }}</td>
+                    <td>{{ member.cpf }}</td>
+                    <td>{{ member.date_birth | date:"d-m-Y"}}</td>
+                    <td>{{ member.city_birth }}</td>
+                    <td>{{ member.state_birth }}</td>
+                    <td>{{ member.date_baptism | date:"d-m-Y"}}</td>
+                    <td>{{ member.address }}</td>
+                    <td>{{ member.cep | default:"-"}}</td>
+                </tr>
+                {% endfor %}
+
+
+            </Tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+
+{% endblock  %}
+
+   
+  </body>
+</html>
