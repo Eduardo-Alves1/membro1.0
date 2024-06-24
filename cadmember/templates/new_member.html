@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+        <table>
+            {{ new_member_form.as_table }}
+        </table>
+        <input type="submit" value="Cadastrar" class="btn btn-primary"> 
+
+    </form>
+
+
+
+{% endblock content %}
