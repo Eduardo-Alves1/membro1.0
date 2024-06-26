@@ -1,5 +1,5 @@
 body {
-    font-family: 'Open Sans', sans-serif;
+    
     background-color: #f7f7f7;
     color: #333;
     margin: 0;
@@ -20,7 +20,7 @@ footer {
 }
 
 nav {
-    background-color: #0096c7;
+    background-color: #fdcd2f;
     color: #fff;
     height: 50px;
     display: flex;
@@ -39,23 +39,46 @@ nav ul li {
     margin: 0 10px;
 }
 
-nav ul li a {
+nav ul li a {   
     color: #fff;
     text-decoration: none;
     font-size: 16px;
     padding: 15px;
     transition: all 0.3s ease;
+    
 }
 
-nav ul li a:hover {
-    background-color: #32bbe8;
+
+form {
+    
+    padding: 20px;  
 }
 
-nav ul li.active a {
-    background-color: #666;
-}
+  input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #e3e1e1;
+      border-radius: 4px;
+      margin-right: 10px;
+      transition: border-bottom-color 0.3s ease-in-out;
+  }
 
-nav ul li.active a:hover {
-    background-color: #999;
-}
+  input[type="text"]:focus {
+      outline: none;
+      border-bottom-color: #e3e1e1;
+  }
 
+  button[type="submit"] {
+      background-color: #fdcd2f;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+  }
+
+  button[type="submit"]:hover {
+      background-color: #10b81e;
+  }

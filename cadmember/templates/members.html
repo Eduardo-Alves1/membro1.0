@@ -1,22 +1,21 @@
 {% extends "base.html" %}
-{% load static %}
+
 <!doctype html>
 
 {% block content %}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
   </head>
     <form method="GET" action="{% url  'members_list' %}">
-        <input type="text" name="search" placeholder="Buscar carro...">
+        <input type="text" name="search" placeholder="Buscar membro...">
         <button type="submit">Buscar</button>
     </form>
 
     <div class="conteiner">
 
-        <table class="table table-striped table-hover">
+        <table class="table table-dark table-striped">
             <thead>
                 <tr>
                     <th scope="col">Nome</th>
@@ -32,7 +31,7 @@
             </thead>
             <Tbody>
                 {% for member in members %}
-                <tr>
+                <tr class="table-success">
                     <td>{{ member.name }}</td>
                     <td>{{ member.cpf }}</td>
                     <td>{{ member.date_birth | date:"d-m-Y"}}</td>
