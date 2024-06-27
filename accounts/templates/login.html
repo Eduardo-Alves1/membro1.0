@@ -1,0 +1,34 @@
+
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+</head>
+
+{% block content %}
+
+
+<div class="conteiner-login">
+    <div class="box-login">
+        <form method="post" class="formLogin">
+        {% csrf_token %}
+        <h1>Login</h1>
+        <div>
+            {{ login_form.username.errors }}
+            <label>Usuário: </label>
+            {{ login_form.username }}
+        </div>
+        <div>
+            {{ login_form.password.errors }}
+            <label>Senha: </label>
+            {{ login_form.password }}
+        </div>
+
+        
+        <input type="submit" value="Entrar" class="btn btn-primary">
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
