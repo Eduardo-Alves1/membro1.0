@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <p>Tem certeza que deseja Excluir o Membro <strong> {{object.name}}</strong></p>
+    <form method="post">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-danger">Excluir</button>
+        <a href="{% url "members_list" %}" class="btn btn-secondary">Cancelar</a>
+
+
+    </form>
+
+{% endblock content %}
