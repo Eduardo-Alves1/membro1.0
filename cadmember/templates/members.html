@@ -46,7 +46,8 @@
                     <td>{{ member.state_birth }}</td>
                     <td>
                     <a href="{% url 'member_update' pk=member.pk %}" class="btn btn-outline-secondary btn-sm">Editar</a>
-                    <a href="{% url 'member_delete' pk=member.pk%}" class="btn btn-outline-danger btn-sm">Excluir</a>
+                    <a href="{% url 'member_delete' pk=member.pk%}"  class="btn btn-outline-danger btn-sm">Excluir</a>
+                    <a href="{% url 'member_detail' pk=member.pk %}" class="btn btn-outline-info btn-sm">Detalhe</a>
                     </td>
                 </tr>
                 {% endfor %}

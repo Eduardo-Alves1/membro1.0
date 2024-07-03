@@ -4,7 +4,7 @@ from cadmember.models import Member
 from cadmember.forms import MemberForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -33,8 +33,15 @@ class MemberUpdateView(UpdateView):
      template_name = 'member_update.html'
      success_url = '/members/'
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class MemberDeleteView(DeleteView):
      model = Member
      template_name ='member_delete.html'
      success_url = '/members/'
+     
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class MemberDetailView(DetailView):
+     model = Member
+     template_name ='member_detail.html'
+     
       
