@@ -1,3 +1,5 @@
+import openpyxl
+from django.http import HttpResponse
 from typing import Any
 from django.db.models.query import QuerySet
 from cadmember.models import Member
@@ -18,7 +20,8 @@ class MembersListView(ListView):
         if search:
              members = members.filter(name__icontains=search)
         return members
-          
+    
+    
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class NewMemberCreateView(CreateView):
      model = Member

@@ -70,21 +70,6 @@ input {
     
 }
 
-  input[type="text"]:focus {
-      outline: none;
-      border-bottom-color: #fdcd2f;
-  }
-
-  button[type="submit"] {
-      background-color: #ff8c00;
-      color: #000000;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease-in-out;
-  }
 
   .register{
     box-sizing: 14px;
