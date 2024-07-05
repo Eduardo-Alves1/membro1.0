@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 <!doctype html>
 
@@ -6,8 +7,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <link  rel="stylesheet" href="{% static 'css/tabela.css' %}">
 
   </head>
     <form method="GET" action="{% url  'members_list' %}">
@@ -17,18 +17,12 @@
 
     <div class="conteiner">
 
-        <table class="table table-striped table-bordered border-dark table-sm align-middle">
-            <thead>
+        <table class="tabela" >
+            <thead class="thead">
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nome</th>
                     <th scope="col">CPF</th>
-                    <th scope="col">Data de Nascimento</th>
-                    <th scope="col">Cidade de Nascimento</th>
-                    <th scope="col">Estado de Nascimento</th>
-                    <th scope="col">Data de Batismo</th>
-                    <th scope="col">Endereço</th>
-                    <th scope="col">CEP</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
@@ -38,16 +32,12 @@
                     <td>{{ member.id }}</td>
                     <td>{{ member.name }}</td>
                     <td>{{ member.cpf }}</td>
-                    <td>{{ member.date_birth | date:"d-m-Y"}}</td>
-                    <td>{{ member.date_baptism | date:"d-m-Y"}}</td>
-                    <td>{{ member.address }}</td>
-                    <td>{{ member.cep | default:"-"}}</td>
-                    <td>{{ member.city_birth }}</td>
-                    <td>{{ member.state_birth }}</td>
                     <td>
-                    <a href="{% url 'member_update' pk=member.pk %}" class="btn btn-outline-secondary btn-sm">Editar</a>
-                    <a href="{% url 'member_delete' pk=member.pk%}"  class="btn btn-outline-danger btn-sm">Excluir</a>
-                    <a href="{% url 'member_detail' pk=member.pk %}" class="btn btn-outline-info btn-sm">Detalhe</a>
+                    <div class="btn">
+                        <a href="{% url 'member_update' pk=member.pk %}" class="btn btn-update">Editar</a>
+                        <a href="{% url 'member_delete' pk=member.pk%}"  class=" btn btn-danger">Excluir</a>
+                        <a href="{% url 'member_detail' pk=member.pk %}" class=" btn btn-detail">Detalhe</a>
+                    </div>
                     </td>
                 </tr>
                 {% endfor %}

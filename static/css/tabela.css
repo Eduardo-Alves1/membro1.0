@@ -1,0 +1,88 @@
+.conteiner{
+    display: flex;
+    border: 4px solid #ccc;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.tabela{
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 50%;
+
+}
+
+
+
+th, td {
+    font-size: large;
+    padding: 4px;
+    text-align: center;
+    border-bottom: 3px solid #8c8c8c;
+    color: #000;
+    width: 45%;
+    height: inherit;
+    
+    
+  }
+
+
+  .btn {
+    display: flex;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin: 0 10px;
+    align-items: center;
+  }
+
+.btn-danger {
+    background-color: white;
+    text-decoration: none !important;
+    border: 1px solid #d9534f;
+    color: #d9534f;
+  }
+
+.btn-danger:hover{
+    background-color: #d9534f;
+    color: #fff;
+    box-shadow: 2px 5px 5px #ebc1b7;
+}
+
+.btn-detail {
+    background-color: #fff;
+    text-decoration: none !important;
+    border: 1px solid #009846;
+    color: #009846;
+}
+
+.btn-detail:hover{
+    background-color: #009846;
+    color: #fff;
+    box-shadow: 2px 5px 5px #ebc1b7;
+}
+
+.btn-update{
+    color: #137fd9;
+    text-decoration: none !important;
+    border: 1px solid #5ab4fd ;
+    
+}
+
+.btn-update:hover{
+    background-color: #5ab4fd;
+    box-shadow: 2px 5px 5px #ebc1b7;
+    color: #fff;
+}
+
+
+a {
+  text-decoration: none !important;
+}
