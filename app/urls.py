@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 from django.urls import path
-from cadmember.views import MembersListView, NewMemberCreateView, MemberUpdateView,MemberDeleteView, MemberDetailView
+from cadmember.views import MembersListView, NewMemberCreateView, MemberUpdateView,MemberDeleteView, MemberDetailView, exporta_excel
 from accounts.views import register_view, login_view,logout_view
 
 urlpatterns = [
@@ -13,5 +13,6 @@ urlpatterns = [
     path('member/<int:pk>/delete',MemberDeleteView.as_view(), name='member_delete'),
     path('register/', register_view, name = 'register'),
     path('login/', login_view, name = 'login'),
-    path('logout/', logout_view, name='logout'),  # from django.contrib.auth.views
+    path('logout/', logout_view, name='logout'),  # from django.con trib.auth.views
+    path('exportar-excel/', exporta_excel, name="exportar_excel"),
 ]

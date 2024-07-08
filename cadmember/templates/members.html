@@ -14,6 +14,7 @@
     <form method="GET" action="{% url  'members_list' %}">
         <input type="text" name="search" placeholder="Buscar membro...">
         <button type="submit">Buscar</button>
+        <a href="{% url 'exportar_excel' %}">Exportar</a>
     </form>
 
     <div class="conteiner">

@@ -1,4 +1,4 @@
-import openpyxl
+import pandas as pd
 from django.http import HttpResponse
 from typing import Any
 from django.db.models.query import QuerySet
@@ -20,7 +20,8 @@ class MembersListView(ListView):
         if search:
              members = members.filter(name__icontains=search)
         return members
-    
+
+
     
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class NewMemberCreateView(CreateView):
@@ -46,5 +47,12 @@ class MemberDeleteView(DeleteView):
 class MemberDetailView(DetailView):
      model = Member
      template_name ='member_detail.html'
-     
-      
+
+def exporta_excel(request):
+     members = Member.objects.all()
+     df = pd.DataFrame(members.values('name','cpf', 'date_birth', 'city_birth', 'state_birth', 'date_baptism', 'address', 'cep'))
+     response = HttpResponse(content_type='application/ms-excel')
+     response['Content-Disposition'] = 'attachment; filename=members.xlsx'
+     df.to_excel(response, index=False)
+     return response
+
