@@ -3,14 +3,14 @@ from django.db import models
 
 class City(models.Model):
     id = models.AutoField(primary_key=True)
-    city = models.CharField(max_length=100, name='city')
+    city = models.CharField(max_length=100, name="city")
 
     def __str__(self):
         return self.city
 
 class State(models.Model):
     id = models.AutoField(primary_key=True)
-    state = models.CharField(max_length=100, name='state')
+    state = models.CharField(max_length=100, name="state")
 
     def __str__(self):
         return self.state
