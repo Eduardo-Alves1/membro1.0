@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,44 +11,50 @@
 
 </head>
 
-<body>
+<body style="background-color: #e1e3e1;">
 
-  <nav class="navbar navbar-expand-lg bg-dark-subtle px-4 shadow-sm p-3 ">
-    <div class="container-">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <ul class="navbar-nav fw-semibold text-light">
+        {% if user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'new_member' %}">Novo Membro</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'members_list' %}">Membros</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Cadastra-se</a></li>
+        {% endif %}
 
-      <div class="navbar-collapse" id="navbarNav ">
-        <ul class="navbar-nav fw-semibold ">
-          {% if user.is_authenticated %}
-            <li class="navbar-brand">Olá, {{ user.username }}</li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'new_member' %}">Novo Membro</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'members_list' %}">Membros</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Cadastra-se</a></li>
-          {% endif %}
+        {% if not user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+        {% endif %}
 
-          {% if not user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-          {% endif %}
+        {% if user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Sair</a></li>
+        {% endif %}
 
-          {% if user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Sair</a></li>
-          {% endif %}
-
-        </ul>
-
-      </div>
+      </ul>
 
     </div>
+  </div>
 
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      {% if user.is_authenticated %}
+        <li class="navbar-brand position-absolute top-0 end-0">Olá, {{ user.username }}</li>
+      {% endif %}
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
   </nav>
-
+  
   <main>
     {% block content %}
     {% endblock %}
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </html>
