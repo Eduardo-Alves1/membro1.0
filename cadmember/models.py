@@ -25,6 +25,7 @@ class Member(models.Model):
     date_baptism = models.DateField(null=False, blank=False, verbose_name='data_batismo')
     address = models.CharField(max_length=200, blank=False, null=False, verbose_name='endereço')
     cep = models.CharField(max_length=8, blank=False, null=False, verbose_name='cep')
+    
 
     def __str__(self) -> str:
         return self.name

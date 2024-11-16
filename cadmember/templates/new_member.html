@@ -1,19 +1,24 @@
 {% extends "base1.html" %}
 
+{% block title %}Novo Membro{% endblock title %}
+
 {% block content %}
-    <div class="container">
-    <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
 
-        <table>
-            {{ form.as_table }}
-            
-        </table>
-        <input type="submit" value="Cadastrar" class="btn btn-primary"> 
+<div class="container mt-4">
+    <h3 class="diplay-4">Novo Membro</h3>
+    <div class='row'>
+        <div class="card">
+            <div class="card-body">
+                <form method="post" class="form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Salvar Marca</button>
 
-    </form>
-    </div>
-
-
+                </form>
+            </div>
+        </div>
+        <a href="{% url 'members_list' %}" class="btn btn-secondary mt-3">Cancelar</a>
+    </dov>
+</div>
 
 {% endblock content %}
