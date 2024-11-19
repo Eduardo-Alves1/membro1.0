@@ -1,40 +1,52 @@
 {% extends "base1.html" %}  
 
 {% block content %}
-    <div class="register">
-        <div class="filho">
-            <form method="post">
-                {% csrf_token %}
-                <h1>Registrar novo ADM</h1>
-                
-                <div class="form-group">
-                    {{ user_form.username.errors }}
-                    <label>Usuario: </label>
-                    {{ user_form.username }}
-                
-                </div>
-                <div class="form-group">
-                    {{ user_form.password1.errors}}
-                    <label>Senha: </label>
-                    {{ user_form.password1 }}
-                </div>
 
-                <div class="form-group">
-                    {{ user_form.password2.errors}}
-                    <label>Confirmar senha: </label>
-                    {{ user_form.password2 }} 
-                </div>
-                
-            
+<div class='container mt-4'>
+    <h3 class='display-6'>Novo ADM</h3>
+    <div class='row'>
+        <div class='card'>
+            <div class='card-body'>
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="{{ form.username.id_for_label }}">Úsuario:</label>
+                        {{ form.username }}
+                        {% if form.username.errors %}
+                            <div class="error">{{ form.username.errors }}</div>
+                        {% endif %}
+                    </div>
 
-                <div class="form-group">
-                    <input type="submit" value="Cadastrar" class="btn btn-primary">
-                </div>
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}">Email:</label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            <div class="error">{{ form.email.errors }}</div>
+                        {% endif %}
+                    </div>
 
-            </form>
+                    <div class="form-group">
+                        <label for="{{ form.password1.id_for_label }}">Senha:</label>
+                        {{ form.password1 }}
+                        {% if form.password1.errors %}
+                            <div class="error">{{ form.password1.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.password2.id_for_label }}">Confirmar Senha:</label>
+                        {{ form.password2 }}
+                        {% if form.password2.errors %}
+                            <div class="error">{{ form.password2.errors }}</div>
+                        {% endif %}
+                        <button type="submit" class="btn btn-success m-3">Salvar ADM</button>
+                        <a href="{% url 'members_list' %}" class="btn btn-danger">Cancelar</a>
+                    </div>
+                    
+                </form>
+        </div>
         </div>
     </div>
-
-
-
+</div>
 {% endblock content %}

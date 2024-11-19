@@ -12,13 +12,13 @@
                 <form method="post" class="form">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary">Salvar Marca</button>
+                    <button type="submit" class="btn btn-success">Salvar Membro</button>
+                    <a href="{% url 'members_list' %}" class="btn btn-danger">Cancelar</a>
 
                 </form>
             </div>
         </div>
-        <a href="{% url 'members_list' %}" class="btn btn-secondary mt-3">Cancelar</a>
-    </dov>
+    </div>
+    
 </div>
-
 {% endblock content %}

@@ -9,6 +9,12 @@
         <ul class="nav flex-column align-items-start" id="menu">
           {% if user.is_authenticated %}
           <li>
+            <a href="#" class="nav-link px-0 align-middle">
+              <i class="bi bi-file-person fs-4"></i>
+              <span class="ms-1">Olá <h4>{{user.username}}</h4></span>
+            </a>
+          </li>
+          <li>
             <a href="{% url 'members_list' %}" class="nav-link px-0 align-middle">
               <i class="bi bi-person-raised-hand fs-4"></i>
               <span class="ms-1">Membros</span>
