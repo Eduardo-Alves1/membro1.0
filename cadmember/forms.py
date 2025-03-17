@@ -13,7 +13,7 @@ class MemberForm(forms.ModelForm):
             "cpf": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "pattern": "[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}",
+                    # "pattern": "[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}",
                     "placeholder": "000.000.000-00",
                 }
             ),
