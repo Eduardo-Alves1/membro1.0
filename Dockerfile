@@ -2,6 +2,10 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+#vareaveis de ambiente
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
 COPY . .
 
 #RUN install --upgrade pip
