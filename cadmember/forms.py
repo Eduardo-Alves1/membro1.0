@@ -1,5 +1,6 @@
 from django import forms
 from cadmember.models import Member, City
+import re
 
 
 class MemberForm(forms.ModelForm):
@@ -34,16 +35,58 @@ class MemberForm(forms.ModelForm):
                 }
             ),
         }
-        labels = {
-            "name": "NOME",
-            "cpf": "CPF",
-            "date_birth": "DATA DE NASCIMENTO",
-            "city_birth": "CIDADE DE NASCIMENTO",
-            "state_birth": "ESTADO DE NASCIMENTO",
-            "address": "ENDEREÇO",
-            "cep": "CEP",
-            "date_baptism": "DATA DO BATISMO",
-        }
+
+    labels = {
+        "name": "NOME",
+        "cpf": "CPF",
+        "date_birth": "DATA DE NASCIMENTO",
+        "city_birth": "CIDADE DE NASCIMENTO",
+        "state_birth": "ESTADO DE NASCIMENTO",
+        "address": "ENDEREÇO",
+        "cep": "CEP",
+        "date_baptism": "DATA DO BATISMO",
+    }
+
+    def clean_cpf(self):
+        cpf = self.cleaned_data.get("cpf")
+        if cpf:
+            # Remove any non-digit characters
+            cpf = re.sub(r"\D", "", cpf)
+
+            # Check if it has 11 digits
+            if len(cpf) != 11:
+                raise forms.ValidationError("CPF deve ter 11 dígitos.")
+
+            # Check if all digits are the same
+            if cpf == cpf[0] * 11:
+                raise forms.ValidationError("CPF inválido.")
+
+            # Validate first digit
+            sum = 0
+            for i in range(9):
+                sum += int(cpf[i]) * (10 - i)
+            digit = 11 - (sum % 11)
+            if digit > 9:
+                digit = 0
+            if str(digit) != cpf[9]:
+                raise forms.ValidationError("CPF inválido.")
+
+            # Validate second digit
+            sum = 0
+            for i in range(10):
+                sum += int(cpf[i]) * (11 - i)
+            digit = 11 - (sum % 11)
+            if digit > 9:
+                digit = 0
+            if str(digit) != cpf[10]:
+                raise forms.ValidationError("CPF inválido.")
+
+        return cpf
+
+    def clean(self):
+        cleaned_data = super().clean()
+        # Você pode adicionar validações adicionais aqui se necessário
+        return cleaned_data
 
     def save(self, commit=True):
         instance = super(MemberForm, self).save(commit=False)
