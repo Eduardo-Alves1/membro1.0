@@ -19,12 +19,12 @@ class MemberForm(forms.ModelForm):
                 }
             ),
             "date_birth": forms.DateInput(
-                attrs={"class": "form-control", "type": "date"}
+                attrs={"class": "form-control", "type": "date"}, format="%Y-%m-%d"
             ),
             "city_birth": forms.Select(attrs={"class": "form-select"}),
             "state_birth": forms.Select(attrs={"class": "form-select"}),
             "date_baptism": forms.DateInput(
-                attrs={"class": "form-control", "type": "date"}
+                attrs={"class": "form-control", "type": "date"}, format="%Y-%m-%d"
             ),
             "address": forms.TextInput(attrs={"class": "form-control"}),
             "cep": forms.TextInput(

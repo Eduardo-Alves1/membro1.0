@@ -1,0 +1,35 @@
+# Ignorar diretórios do Git
+.git
+.gitignore
+
+# Ignorar arquivos temporários do sistema operacional
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+
+# Ignorar dependências que podem ser instaladas novamente
+node_modules
+venv
+__pycache__
+*.pyc
+*.pyo
+
+# Ignorar arquivos de logs e temporários
+logs
+*.log
+tmp/
+*.pid
+
+# Ignorar credenciais e arquivos sensíveis
+.env
+*.pem
+*.key
+*.crt
+secrets/
+config.yaml
+
+# Ignorar arquivos de compilação e cache
+dist/
+build/
+coverage/
