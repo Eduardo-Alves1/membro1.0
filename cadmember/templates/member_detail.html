@@ -3,34 +3,33 @@
 {% block title %} Detalhes {% endblock title %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 mx-auto text-center mb-3">
-                <div class="card text-bg-light mb-3 shadow" style="max-width: 18rem;">
-                    <div class="card-header bg-transparent border-success">{{ member.name }}</div>
-                    <div class="card-body text-success">
-                        <h5 class="card-title">Informações</h5>
-                        <p><strong>CPF:</strong> {{ member.cpf }}</p>
-                        <p><strong>Data de Nascimento:</strong> {{ member.date_birth |date:"d/m/Y"}}</p>
-                        <p><strong>Cidade Nascimento:</strong> {{ member.cidade_nascimento }}</p>
-                        <p><strong>Estado Nascimento:</strong> {{ member.estado_nascimento }}</p>
-                        <p><strong>Data de Batismo:</strong> {{ member.data_batismo |date:"d/m/Y"}}</p>
-                        <p><strong>Endereço:</strong> {{ member.endereço }}</p>
-                        <p><strong>CEP:</strong> {{ member.cep }}</p>
-                    </div>
-                    <div class="card-footer bg-transparent border-success">
-                        <a href="{% url 'member_update' pk=member.pk %}" class="btn btn-outline-secondary btn-sm" aria-label="Editar">
-                            <i class="bi bi-pencil"></i> Editar
-                        </a>
-                        <a href="{% url 'member_delete' pk=member.pk%}" class="btn btn-outline-danger btn-sm" aria-label="Excluir">
-                            <i class="bi bi-trash"></i> Excluir
-                        </a>
-                        <a href="{% url 'members_list' %}" class="btn btn-outline-primary btn-sm" aria-label="Voltar">
-                            <i class="bi bi-arrow-left"></i> Voltar
-                        </a>
-                    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto text-center mb-3">
+            <div class="card text-bg-light mb-3 shadow" style="max-width: 18rem;">
+                <div class="card-header bg-transparent border-success">{{ member.name }}</div>
+                <div class="card-body text-success">
+                    <h5 class="card-title">Informações</h5>
+                    <p><strong>CPF:</strong> {{ member.cpf }}</p>
+                    <p><strong>Data de Nascimento:</strong> {{ member.date_birth |date:"d/m/Y"}}</p>
+                    <p><strong>Cidade Nascimento:</strong> {{ member.cidade_nascimento }}</p>
+                    <p><strong>Estado Nascimento:</strong> {{ member.estado_nascimento }}</p>
+                    <p><strong>Data de Batismo:</strong> {{ member.data_batismo |date:"d/m/Y"}}</p>
+                    <p><strong>Endereço:</strong> {{ member.endereço }}</p>
+                    <p><strong>CEP:</strong> {{ member.cep }}</p>
                 </div>
-            </div>
-        </div>
-    </div>
-{% endblock content %}
+                <div class="card-footer bg-transparent border-success">
+                    <a href="{% url 'member_update' pk=member.pk %}" class="btn btn-outline-secondary btn-sm"
+                        aria-label="Editar">
+                        <i class="bi bi-pencil"></i> Editar
+                    </a>
+                    <a href="{% url 'member_delete' pk=member.pk%}" class="btn btn-outline-danger btn-sm"
+                        aria-label="Excluir">
+                        <i class="bi bi-trash"></i> Excluir
+                    </a>
+                    <a href="{% url 'members_list' %}" class="btn btn-outline-primary btn-sm" aria-label="Voltar">
+                        <i class="bi bi-arrow-left"></i> Voltar
+                    </a>
+
+                </div>
+                {% endblock content %}
