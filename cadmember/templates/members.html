@@ -21,6 +21,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Nome</th>
                 <th scope="col">CPF</th>
+                <th scope="col">Data Nascimento</th>
                 <th scope="col">Ações</th>
             </tr>
         </thead>
@@ -30,12 +31,45 @@
                 <td>{{ member.id }}</td>
                 <td>{{ member.name }}</td>
                 <td>{{ member.cpf }}</td>
+                <td>{{ member.date_birth | date:"d/m/Y" }}</td>
                 <td>
-                    <a href="{% url 'member_detail' pk=member.pk %}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
 
-                    <a href="{% url 'member_update' pk=member.pk  %}" class="btn btn-warning btn-sm"><i class="bi bi-pen"></i></a>
+                     <!-- Button trigger modal -->
+                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{ member.id }}">
+                        Detalhes
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal{{ member.id }}" tabindex="-1" aria-labelledby="modalLabel{{ member.id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalLabel{{ member.id }}">{{ member.name }}</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>CPF: {{ member.cpf }}</p>
+                                <p>Data de Nascimento: {{ member.date_birth | date:"d/m/Y"}}</p>
+                                <p>Cidade de Nascimento: {{ member.city_birth }}</p>
+                                <p>Estado de Nascimento: {{ member.state_birth }}</p>
+                                <p>Data de Batismo: {{ member.date_birth | date:"d/m/Y"}}</p>
+                                <p>Endereço: {{ member.address }}</p>
+                                <p>CEP: {{ member.cep }}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            </div>
+                         </div>
+                        </div>
+                    </div>
 
-                    <a href="{% url 'member_delete' pk=member.pk  %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+
+
+
+                   <!-- <a href="{% url 'member_detail' pk=member.pk %}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a> -->
+
+                    <a href="{% url 'member_update' pk=member.pk  %}" class="btn btn-warning btn-mb"><i class="bi bi-pen"></i></a>
+
+                    <a href="{% url 'member_delete' pk=member.pk  %}" class="btn btn-danger btn-mb"><i class="bi bi-trash"></i></a>
                 </td>
             </tr>
 

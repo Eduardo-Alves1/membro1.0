@@ -12,10 +12,10 @@
                     <h5 class="card-title">Informações</h5>
                     <p><strong>CPF:</strong> {{ member.cpf }}</p>
                     <p><strong>Data de Nascimento:</strong> {{ member.date_birth |date:"d/m/Y"}}</p>
-                    <p><strong>Cidade Nascimento:</strong> {{ member.cidade_nascimento }}</p>
-                    <p><strong>Estado Nascimento:</strong> {{ member.estado_nascimento }}</p>
-                    <p><strong>Data de Batismo:</strong> {{ member.data_batismo |date:"d/m/Y"}}</p>
-                    <p><strong>Endereço:</strong> {{ member.endereço }}</p>
+                    <p><strong>Cidade:</strong> {{ member.city_birth }}</p>
+                    <p><strong>Estado:</strong> {{ member.state_birth }}</p>
+                    <p><strong>Endereço:</strong> {{ member.address }}</p>
+                    <p><strong>Data de Batismo:</strong> {{ member.date_birth |date:"d/m/Y"}}</p>
                     <p><strong>CEP:</strong> {{ member.cep }}</p>
                 </div>
                 <div class="card-footer bg-transparent border-success">
