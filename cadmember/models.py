@@ -42,5 +42,11 @@ class Member(models.Model):
     )
     cep = models.CharField(max_length=8, blank=False, null=False, verbose_name="cep")
 
+    dizimista = models.BooleanField(default=False, verbose_name="dizimista", null=False)
+
+    telephone = models.CharField(
+        max_length=11, blank=True, null=True, verbose_name="telefone"
+    )
+
     def __str__(self) -> str:
         return self.name

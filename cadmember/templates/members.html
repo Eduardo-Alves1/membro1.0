@@ -21,6 +21,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Nome</th>
                 <th scope="col">CPF</th>
+                <th scope="col">Membro dizimista</th>
                 <th scope="col">Data Nascimento</th>
                 <th scope="col">Ações</th>
             </tr>
@@ -31,6 +32,7 @@
                 <td>{{ member.id }}</td>
                 <td>{{ member.name }}</td>
                 <td>{{ member.cpf }}</td>
+                <td>{{ member.dizimista }}</td>
                 <td>{{ member.date_birth | date:"d/m/Y" }}</td>
                 <td>
 
@@ -54,6 +56,11 @@
                                 <p>Data de Batismo: {{ member.date_birth | date:"d/m/Y"}}</p>
                                 <p>Endereço: {{ member.address }}</p>
                                 <p>CEP: {{ member.cep }}</p>
+                                {% if member.dizimista %}
+                                    <p><strong>Membro Dizimista:</strong> SIM </p>
+                                {% else %}
+                                 <p><strong>Membro Dizimista:</strong> NÃO </p>
+                                {% endif %}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

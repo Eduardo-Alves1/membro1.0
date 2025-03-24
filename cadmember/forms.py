@@ -34,6 +34,14 @@ class MemberForm(forms.ModelForm):
                     "placeholder": "00000-000",
                 }
             ),
+            "telephone": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    #"pattern": "[0-9]{2} [0-9]{5}-[0-9]{4}",
+                    "placeholder": "00 00000-0000",
+                }
+            ),
+            "dizimista": forms.CheckboxInput(attrs={"class": "form-check-input"}),
         }
 
     labels = {
@@ -44,7 +52,9 @@ class MemberForm(forms.ModelForm):
         "state_birth": "ESTADO DE NASCIMENTO",
         "address": "ENDEREÇO",
         "cep": "CEP",
+        "telephone": "TELEFONE",
         "date_baptism": "DATA DO BATISMO",
+        "dizimista": "DIZIMISTA",
     }
 
     def clean_cpf(self):

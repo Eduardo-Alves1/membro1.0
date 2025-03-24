@@ -17,6 +17,7 @@
                     <p><strong>Endereço:</strong> {{ member.address }}</p>
                     <p><strong>Data de Batismo:</strong> {{ member.date_birth |date:"d/m/Y"}}</p>
                     <p><strong>CEP:</strong> {{ member.cep }}</p>
+                    
                 </div>
                 <div class="card-footer bg-transparent border-success">
                     <a href="{% url 'member_update' pk=member.pk %}" class="btn btn-outline-secondary btn-sm"
