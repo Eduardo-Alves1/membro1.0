@@ -48,5 +48,9 @@ class Member(models.Model):
         max_length=11, blank=True, null=True, verbose_name="telefone"
     )
 
+    class Meta:
+        verbose_name = "Membro"
+        verbose_name_plural = "Membros"
+
     def __str__(self) -> str:
         return self.name

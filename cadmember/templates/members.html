@@ -37,8 +37,8 @@
                 <td>
 
                      <!-- Button trigger modal -->
-                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{ member.id }}">
-                        Detalhes
+                     <button type="button" class="btn btn-primary btn-mb" data-bs-toggle="modal"  data-bs-target="#modal{{ member.id }}" ><i class="bi bi-eye"></i>
+                        
                     </button>
                     <!-- Modal -->
                     <div class="modal fade" id="modal{{ member.id }}" tabindex="-1" aria-labelledby="modalLabel{{ member.id }}" aria-hidden="true">
@@ -74,7 +74,7 @@
 
                    <!-- <a href="{% url 'member_detail' pk=member.pk %}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a> -->
 
-                    <a href="{% url 'member_update' pk=member.pk  %}" class="btn btn-warning btn-mb"><i class="bi bi-pen"></i></a>
+                    <a href="{% url 'member_update' pk=member.pk  %}" class="btn btn-warning btn-mb" ><i class="bi bi-pen"></i></a>
 
                     <a href="{% url 'member_delete' pk=member.pk  %}" class="btn btn-danger btn-mb"><i class="bi bi-trash"></i></a>
                 </td>

@@ -2,7 +2,28 @@
 
 {% block content %}
     <h1>Atualizar Dados</h1>
-
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+        <!-- Toast Container -->
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+            {% if form.errors %}
+                <div class="toast show align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <strong>Erros no formulário:</strong>
+                            <ul>
+                                {% for field, errors in form.errors.items %}
+                                    {% for error in errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
