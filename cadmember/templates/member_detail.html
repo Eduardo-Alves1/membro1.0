@@ -1,36 +1,79 @@
-{% extends "base1.html" %}
+{% extends "base.html" %} {% block content %}
+<div class="container mt-4">
+  <div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+  >
+    <h1 class="h2">Detalhes do Membro</h1>
+    <a href="{% url 'members_list' %}" class="btn btn-sm btn-outline-secondary">
+      <i class="bi bi-arrow-left me-1"></i>
+      Voltar para a Lista
+    </a>
+  </div>
 
-{% block title %} Detalhes {% endblock title %}
+  <div class="card shadow-sm">
+    <div class="card-header">
+      <h5 class="my-0 font-weight-normal">{{ member.name }}</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <dl class="row">
+            <dt class="col-sm-4">CPF</dt>
+            <dd class="col-sm-8">{{ member.cpf }}</dd>
 
-{% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 mx-auto text-center mb-3">
-            <div class="card text-bg-light mb-3 shadow" style="max-width: 18rem;">
-                <div class="card-header bg-transparent border-success">{{ member.name }}</div>
-                <div class="card-body text-success">
-                    <h5 class="card-title">Informações</h5>
-                    <p><strong>CPF:</strong> {{ member.cpf }}</p>
-                    <p><strong>Data de Nascimento:</strong> {{ member.date_birth |date:"d/m/Y"}}</p>
-                    <p><strong>Cidade:</strong> {{ member.city_birth }}</p>
-                    <p><strong>Estado:</strong> {{ member.state_birth }}</p>
-                    <p><strong>Endereço:</strong> {{ member.address }}</p>
-                    <p><strong>Data de Batismo:</strong> {{ member.date_birth |date:"d/m/Y"}}</p>
-                    <p><strong>CEP:</strong> {{ member.cep }}</p>
-                    
-                </div>
-                <div class="card-footer bg-transparent border-success">
-                    <a href="{% url 'member_update' pk=member.pk %}" class="btn btn-outline-secondary btn-sm"
-                        aria-label="Editar">
-                        <i class="bi bi-pencil"></i> Editar
-                    </a>
-                    <a href="{% url 'member_delete' pk=member.pk%}" class="btn btn-outline-danger btn-sm"
-                        aria-label="Excluir">
-                        <i class="bi bi-trash"></i> Excluir
-                    </a>
-                    <a href="{% url 'members_list' %}" class="btn btn-outline-primary btn-sm" aria-label="Voltar">
-                        <i class="bi bi-arrow-left"></i> Voltar
-                    </a>
+            <dt class="col-sm-4">Data de Nascimento</dt>
+            <dd class="col-sm-8">{{ member.date_birth | date:"d/m/Y" }}</dd>
 
-                </div>
-                {% endblock content %}
+            <dt class="col-sm-4">Naturalidade</dt>
+            <dd class="col-sm-8">
+              {{ member.city_birth }} / {{ member.state_birth }}
+            </dd>
+
+            <dt class="col-sm-4">Data de Batismo</dt>
+            <dd class="col-sm-8">
+              {{ member.date_baptism | date:"d/m/Y" }}
+            </dd>
+          </dl>
+        </div>
+        <div class="col-md-6">
+          <dl class="row">
+            <dt class="col-sm-4">Endereço</dt>
+            <dd class="col-sm-8">{{ member.address }}</dd>
+
+            <dt class="col-sm-4">CEP</dt>
+            <dd class="col-sm-8">{{ member.cep }}</dd>
+
+            <dt class="col-sm-4">Telefone</dt>
+            <dd class="col-sm-8">{{ member.telephone | default:"Não informado" }}</dd>
+
+            <dt class="col-sm-4">É Dizimista?</dt>
+            <dd class="col-sm-8">
+              {% if member.dizimista %}
+              <span class="badge bg-success">Sim</span>
+              {% else %}
+              <span class="badge bg-secondary">Não</span>
+              {% endif %}
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-end">
+      <a
+        href="{% url 'member_update' pk=member.pk %}"
+        class="btn btn-outline-secondary"
+        aria-label="Editar"
+      >
+        <i class="bi bi-pencil me-1"></i> Editar
+      </a>
+      <a
+        href="{% url 'member_delete' pk=member.pk%}"
+        class="btn btn-danger"
+        aria-label="Excluir"
+      >
+        <i class="bi bi-trash me-1"></i> Excluir
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

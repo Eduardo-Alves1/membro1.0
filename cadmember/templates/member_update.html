@@ -1,33 +1,144 @@
-{% extends "base1.html" %}
+{% extends 'base.html' %} {% load widget_tweaks %} {% block content %}
+<div class="container mt-4">
+  <div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+  >
+    <h1 class="h2">Editar Membro</h1>
+    <a href="{% url 'members_list' %}" class="btn btn-sm btn-outline-secondary">
+      <i class="bi bi-arrow-left me-1"></i>
+      Cancelar
+    </a>
+  </div>
 
-{% block content %}
-    <h1>Atualizar Dados</h1>
-    <div aria-live="polite" aria-atomic="true" class="position-relative">
-        <!-- Toast Container -->
-        <div class="toast-container position-fixed top-0 end-0 p-3">
-            {% if form.errors %}
-                <div class="toast show align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            <strong>Erros no formulário:</strong>
-                            <ul>
-                                {% for field, errors in form.errors.items %}
-                                    {% for error in errors %}
-                                        <li>{{ error }}</li>
-                                    {% endfor %}
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                </div>
-            {% endif %}
-        </div>
-    </div>
-    <form method="post">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <form method="post" novalidate>
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Atualizar">
-    </form>
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label">{{ form.name.label }}</label>
+            {% render_field form.name class="form-control" %}
+          </div>
 
-{% endblock content %}
+          <div class="col-md-6">
+            <label class="form-label">{{ form.cpf.label }}</label>
+            {% render_field form.cpf class="form-control" %}
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">{{ form.telephone.label }}</label>
+            {% render_field form.telephone class="form-control" %}
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">{{ form.date_birth.label }}</label>
+            {% render_field form.date_birth type="date" class="form-control" %}
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">{{ form.city_birth.label }}</label>
+            {% render_field form.city_birth class="form-select" %}
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">{{ form.state_birth.label }}</label>
+            {% render_field form.state_birth class="form-select" %}
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">{{ form.address.label }}</label>
+            {% render_field form.address class="form-control" id="id_address" %}
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">{{ form.bairro.label }}</label>
+            {% render_field form.bairro class="form-control" id="id_bairro" %}
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">{{ form.cep.label }}</label>
+            {% render_field form.cep class="form-control" id="id_cep" %}
+            <span id="cep-status" class="form-text"></span>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">{{ form.state.label }}</label>
+            {% render_field form.state class="form-select" id="id_state" %}
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">{{ form.city.label }}</label>
+            {% render_field form.city class="form-select" id="id_city" %}
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">{{ form.date_baptism.label }}</label>
+            {% render_field form.date_baptism type="date" class="form-control" %}
+          </div>
+
+          <div class="col-md-6 align-self-center">
+            <div class="form-check form-switch">
+              {% render_field form.dizimista class="form-check-input" %}
+              <label class="form-check-label">{{ form.dizimista.label }}</label>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <button type="submit" class="btn btn-primary w-100">
+          <i class="bi bi-check2-circle me-1"></i>Atualizar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% block javascript %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const cepInput = document.getElementById("id_cep");
+    const statusSpan = document.getElementById("cep-status");
+
+    if (cepInput && statusSpan) {
+      cepInput.addEventListener("blur", function () {
+        const cep = this.value.replace(/\D/g, "");
+        
+        // Clear previous status
+        statusSpan.textContent = "";
+        statusSpan.className = "form-text";
+
+        if (cep.length === 8) {
+          statusSpan.textContent = "Buscando...";
+          statusSpan.classList.add("text-muted");
+
+          fetch(`/api/get-address/${cep}/`)
+            .then((response) => {
+              if (!response.ok) {
+                return response.json().then(err => { throw new Error(err.error || 'Erro de comunicação.'); });
+              }
+              return response.json();
+            })
+            .then((data) => {
+              if (data.error) {
+                throw new Error(data.error);
+              }
+              
+              document.getElementById("id_address").value = data.address;
+              document.getElementById("id_bairro").value = data.bairro;
+              document.getElementById("id_state").value = data.state;
+              document.getElementById("id_city").value = data.city;
+              statusSpan.textContent = "Endereço preenchido!";
+              statusSpan.className = "form-text text-success";
+            })
+            .catch((error) => {
+              console.error("Erro na busca de CEP:", error);
+              statusSpan.textContent = error.message || "CEP não encontrado.";
+              statusSpan.className = "form-text text-danger";
+            });
+        }
+      });
+    }
+  });
+</script>
+{% endblock javascript %} {% endblock content %}

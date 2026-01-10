@@ -4,18 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fab5a8d-71f5-4b5c-9c31-c9cb642edb96" name="Changes" comment="" />
+    <list default="true" id="5fab5a8d-71f5-4b5c-9c31-c9cb642edb96" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PRD.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/membro1.0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/membro1.0.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/base1.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/components/_sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/components/_sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cadmember/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/cadmember/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cadmember/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/cadmember/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cadmember/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/cadmember/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cadmember/templates/member_delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/cadmember/templates/member_delete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cadmember/templates/member_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/cadmember/templates/member_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cadmember/templates/member_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/cadmember/templates/member_update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cadmember/templates/members.html" beforeDir="false" afterPath="$PROJECT_DIR$/cadmember/templates/members.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cadmember/templates/new_member.html" beforeDir="false" afterPath="$PROJECT_DIR$/cadmember/templates/new_member.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cadmember/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cadmember/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cadmember/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/cadmember/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="6474" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2p24tVfgNW1WTZzqenTds6N1BHA" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -23,15 +55,31 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "main",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/eduar/Documents/PROJETOS/membro1.0",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-d7ad00fb9fc3-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23726.102" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.29346.142" />
+        <option value="bundled-python-sdk-f2b7a9f6281b-6e1f45a539f7-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.29346.142" />
       </set>
     </attachedChunks>
   </component>
@@ -43,7 +91,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1731951050698</updated>
+      <workItem from="1768069834616" duration="101000" />
+      <workItem from="1768070139942" duration="10030000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

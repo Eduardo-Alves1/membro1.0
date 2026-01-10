@@ -1,90 +1,85 @@
-{% extends "base1.html" %}
-{% block title %} SGE - MARCAS{% endblock title %} SGE - MARCAS
-
-{% block content %}
-
-<div class="row mb-3">
-    <div class="col-md-6">
-        <form method="get" action="{% url 'members_list' %}">
-            <div class="input-group">
-                <input type="text" class="form-control" name="search" placeholder="Nome" value="{{ request.GET.name }}">
-                <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
-            </div>
-        </form>
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-4">
+  <div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+  >
+    <h1 class="h2">Membros</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <a
+        href="{% url 'new_member' %}"
+        class="btn btn-sm btn-primary"
+      >
+        <i class="bi bi-plus-lg me-1"></i>
+        Adicionar Membro
+      </a>
     </div>
-</div>
+  </div>
 
-<div class="table-responsive">
-    <table class="table table-striped table-bordered">
-        <thead class="thead-dark">
+  <div class="card shadow-sm">
+    <div class="card-header">
+      <form method="get" action="{% url 'members_list' %}">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            name="search"
+            placeholder="Buscar por nome..."
+            value="{{ request.GET.search }}"
+          />
+          <button type="submit" class="btn btn-secondary">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead>
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nome</th>
-                <th scope="col">CPF</th>
-                <!--<th scope="col">Membro dizimista</th>-->
-                <th scope="col">Data Nascimento</th>
-                <th scope="col">Ações</th>
+              <th>Nome</th>
+              <th>CPF</th>
+              <th>Data de Nascimento</th>
+              <th class="text-end">Ações</th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             {% for member in members %}
             <tr>
-                <td>{{ member.id }}</td>
-                <td>{{ member.name }}</td>
-                <td>{{ member.cpf }}</td>
-                <!--<td>{{ member.dizimista }}</td>-->
-                <td>{{ member.date_birth | date:"d/m/Y" }}</td>
-                <td>
-
-                     <!-- Button trigger modal -->
-                     <button type="button" class="btn btn-primary btn-mb" data-bs-toggle="modal"  data-bs-target="#modal{{ member.id }}" ><i class="bi bi-eye"></i>
-                        
-                    </button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="modal{{ member.id }}" tabindex="-1" aria-labelledby="modalLabel{{ member.id }}" aria-hidden="true">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="modalLabel{{ member.id }}">{{ member.name }}</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>CPF: {{ member.cpf }}</p>
-                                <p>Data de Nascimento: {{ member.date_birth | date:"d/m/Y"}}</p>
-                                <p>Cidade de Nascimento: {{ member.city_birth }}</p>
-                                <p>Estado de Nascimento: {{ member.state_birth }}</p>
-                                <p>Data de Batismo: {{ member.date_birth | date:"d/m/Y"}}</p>
-                                <p>Endereço: {{ member.address }}</p>
-                                <p>CEP: {{ member.cep }}</p>
-                                <!--{% if member.dizimista %}
-                                    <p><strong>Membro Dizimista:</strong> SIM </p>
-                                {% else %}
-                                 <p><strong>Membro Dizimista:</strong> NÃO </p>
-                                {% endif %}-->
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                            </div>
-                         </div>
-                        </div>
-                    </div>
-
-
-
-
-                   <!-- <a href="{% url 'member_detail' pk=member.pk %}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a> -->
-
-                    <a href="{% url 'member_update' pk=member.pk  %}" class="btn btn-warning btn-mb" ><i class="bi bi-pen"></i></a>
-
-                    <a href="{% url 'member_delete' pk=member.pk  %}" class="btn btn-danger btn-mb"><i class="bi bi-trash"></i></a>
-                </td>
+              <td>{{ member.name }}</td>
+              <td>{{ member.cpf }}</td>
+              <td>{{ member.date_birth | date:"d/m/Y" }}</td>
+              <td class="text-end">
+                <a
+                  href="{% url 'member_detail' pk=member.pk %}"
+                  class="btn btn-sm btn-outline-secondary"
+                  ><i class="bi bi-eye"></i
+                ></a>
+                <a
+                  href="{% url 'member_update' pk=member.pk %}"
+                  class="btn btn-sm btn-outline-secondary"
+                  ><i class="bi bi-pen"></i
+                ></a>
+                <a
+                  href="{% url 'member_delete' pk=member.pk %}"
+                  class="btn btn-sm btn-outline-danger"
+                  ><i class="bi bi-trash"></i
+                ></a>
+              </td>
             </tr>
-
+            {% empty %}
+            <tr>
+              <td colspan="4" class="text-center">Nenhum membro encontrado.</td>
+            </tr>
             {% endfor %}
-        </tbody>
-
-    </table>
-    <a href="{% url 'exportar_excel' %} " class="btn btn-success btn-sm bi bi-file-earmark-excel">Exportar</a>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-between align-items-center">
+        {% include 'components/_pagination.html' %}
+        <a href="{% url 'exportar_excel' %} " class="btn btn-sm btn-outline-success bi bi-file-earmark-excel"> Exportar</a>
+    </div>
+  </div>
 </div>
-{% include "components/_pagination.html" %}
 {% endblock content %}

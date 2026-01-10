@@ -1,52 +1,50 @@
-{% extends "base1.html" %}  
+{% load widget_tweaks %}
+{% extends "base_auth.html" %}
+
+{% block title %}SGM - Registro{% endblock %}
 
 {% block content %}
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h1 class="h4 text-center mb-3">Novo ADM</h1>
+      <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
 
-<div class='container mt-4'>
-    <h3 class='display-6'>Novo ADM</h3>
-    <div class='row'>
-        <div class='card'>
-            <div class='card-body'>
-                <form method="post">
-                    {% csrf_token %}
-                    
-                    <div class="form-group">
-                        <label for="{{ form.username.id_for_label }}">Úsuario:</label>
-                        {{ form.username }}
-                        {% if form.username.errors %}
-                            <div class="error">{{ form.username.errors }}</div>
-                        {% endif %}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="{{ form.email.id_for_label }}">Email:</label>
-                        {{ form.email }}
-                        {% if form.email.errors %}
-                            <div class="error">{{ form.email.errors }}</div>
-                        {% endif %}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="{{ form.password1.id_for_label }}">Senha:</label>
-                        {{ form.password1 }}
-                        {% if form.password1.errors %}
-                            <div class="error">{{ form.password1.errors }}</div>
-                        {% endif %}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="{{ form.password2.id_for_label }}">Confirmar Senha:</label>
-                        {{ form.password2 }}
-                        {% if form.password2.errors %}
-                            <div class="error">{{ form.password2.errors }}</div>
-                        {% endif %}
-                        <button type="submit" class="btn btn-success m-3">Salvar ADM</button>
-                        <a href="{% url 'members_list' %}" class="btn btn-danger">Cancelar</a>
-                    </div>
-                    
-                </form>
+        <div class="form-floating mb-3">
+          {{ form.username|add_class:'form-control'|attr:'placeholder:Usuário' }}
+          <label for="{{ form.username.id_for_label }}">Usuário</label>
+          {% if form.username.errors %}
+            <div class="invalid-feedback d-block">{{ form.username.errors|striptags }}</div>
+          {% endif %}
         </div>
+
+        <div class="form-floating mb-3">
+          {{ form.email|add_class:'form-control'|attr:'placeholder:Email' }}
+          <label for="{{ form.email.id_for_label }}">Email</label>
+          {% if form.email.errors %}
+            <div class="invalid-feedback d-block">{{ form.email.errors|striptags }}</div>
+          {% endif %}
         </div>
+
+        <div class="form-floating mb-3">
+          {{ form.password1|add_class:'form-control'|attr:'placeholder:Senha' }}
+          <label for="{{ form.password1.id_for_label }}">Senha</label>
+          {% if form.password1.errors %}
+            <div class="invalid-feedback d-block">{{ form.password1.errors|striptags }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-floating mb-3">
+          {{ form.password2|add_class:'form-control'|attr:'placeholder:Confirmar Senha' }}
+          <label for="{{ form.password2.id_for_label }}">Confirmar Senha</label>
+          {% if form.password2.errors %}
+            <div class="invalid-feedback d-block">{{ form.password2.errors|striptags }}</div>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Salvar ADM</button>
+        <a href="{% url 'members_list' %}" class="btn btn-secondary w-100 mt-2">Cancelar</a>
+      </form>
     </div>
-</div>
+  </div>
 {% endblock content %}

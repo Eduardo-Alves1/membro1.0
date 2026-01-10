@@ -1,15 +1,37 @@
-{% extends "base1.html" %}
+{% extends "base.html" %} {% block content %}
+<div class="container mt-4">
+  <div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+  >
+    <h1 class="h2">Confirmar Exclusão</h1>
+  </div>
 
-
-{% block content %}
-    <p>Tem certeza que deseja Excluir o Membro <strong> {{object.name}}</strong></p>
-    <form method="post">
+  <div class="card shadow-sm border-danger">
+    <div class="card-header bg-danger text-white">
+      <h5 class="my-0 font-weight-normal">Atenção! Ação irreversível.</h5>
+    </div>
+    <div class="card-body">
+      <p>
+        Você tem certeza que deseja excluir permanentemente o membro
+        <strong>{{ object.name }}</strong
+        >?
+      </p>
+      <p class="text-muted">
+        Todos os dados associados a este membro, como registros de contribuições,
+        serão perdidos.
+      </p>
+      <form method="post" class="mt-4">
         {% csrf_token %}
-
-        <button type="submit" class="btn btn-danger">Excluir</button>
-        <a href="{% url "members_list" %}" class="btn btn-secondary">Cancelar</a>
-
-
-    </form>
-
+        <button type="submit" class="btn btn-danger">
+          <i class="bi bi-trash me-1"></i>Sim, excluir
+        </button>
+        <a
+          href="{% url 'members_list' %}"
+          class="btn btn-secondary"
+          ><i class="bi bi-x-circle me-1"></i>Cancelar</a
+        >
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock content %}
