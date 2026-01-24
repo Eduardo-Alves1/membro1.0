@@ -2,9 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from accounts.forms import RegisterForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def register_view(request):
+    if not request.user.is_superuser:
+        return redirect('members_list')
+
     # VERIFICA O POST DO USURIO SE É VALIDO
     if request.method == "POST":
         form = RegisterForm(request.POST)

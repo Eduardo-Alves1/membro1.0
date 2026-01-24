@@ -1,46 +1,60 @@
-<div class="d-flex flex-column p-3">
-  <a
-    href="/"
-    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
-  >
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100">
+  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
     <i class="bi bi-person-bounding-box fs-4 me-2"></i>
     <span class="fs-4">SGM</span>
   </a>
   <hr />
   <ul class="nav nav-pills flex-column mb-auto">
     {% if user.is_authenticated %}
-    <li class="nav-item mb-2">
-      <span class="nav-link text-white">
-        <i class="bi bi-person-circle"></i>
-        Olá, <strong>{{ user.username }}</strong>
-      </span>
-    </li>
-    <li>
-      <a href="{% url 'members_list' %}" class="nav-link">
-        <i class="bi bi-people"></i>
+    
+    {% url 'members_list' as members_list_url %}
+    <li class="nav-item">
+      <a href="{{ members_list_url }}" class="nav-link text-white {% if request.path == members_list_url %}active{% endif %}">
+        <i class="bi bi-people me-2"></i>
         Membros
       </a>
     </li>
+
+    {% url 'contributions_list' as contributions_list_url %}
     <li>
-      <a href="{% url 'contributions_list' %}" class="nav-link">
-        <i class="bi bi-cash-coin"></i>
+      <a href="{{ contributions_list_url }}" class="nav-link text-white {% if request.path == contributions_list_url %}active{% endif %}">
+        <i class="bi bi-cash-coin me-2"></i>
         Contribuições
       </a>
     </li>
-    <hr />
+
+    {% url 'contribution_new' as new_contribution_url %}
     <li>
-      <a href="{% url 'register' %}" class="nav-link">
-        <i class="bi bi-person-gear"></i>
-        Novo ADM
-      </a>
+        <a href="{% url 'contribution_new' %}" class="nav-link text-white {% if request.path == new_contribution_url %}active{% endif %}">
+            <i class="bi bi-plus-circle me-2"></i>
+            Nova Contribuição
+        </a>
     </li>
+
+    {% if user.is_superuser %}
+    <hr>
+    {% url 'register' as register_url %}
     <li>
-      <a href="{% url 'logout' %}" class="nav-link">
-        <i class="bi bi-box-arrow-right"></i>
-        Sair
+      <a href="{% url 'register' %}" class="nav-link text-white {% if request.path == register_url %}active{% endif %}">
+        <i class="bi bi-person-plus me-2"></i>
+        Novo Usuário
       </a>
     </li>
     {% endif %}
+    
+    {% endif %}
   </ul>
+  <hr />
+  {% if user.is_authenticated %}
+  <div class="dropdown">
+    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-person-circle fs-4 me-2"></i>
+      <strong>{{ user.username }}</strong>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+      <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
+    </ul>
+  </div>
+  {% endif %}
 </div>
 

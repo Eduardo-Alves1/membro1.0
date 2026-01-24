@@ -1,0 +1,171 @@
+/* Import Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* --- CSS Variables for Modern Theme --- */
+:root {
+  --primary-color: #6a11cb;
+  --secondary-color: #2575fc;
+  --primary-gradient: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  --background-color: #f4f7fc;
+  --card-background-color: #ffffff;
+  --text-color: #333;
+  --text-secondary-color: #6c757d;
+  --sidebar-bg: #111827;
+  --sidebar-text: #d1d5db;
+  --sidebar-hover-bg: #1f2937;
+  --border-color: #e5e7eb;
+  --shadow-color: rgba(106, 17, 203, 0.15);
+  --success-color: #10b981;
+  --error-color: #ef4444;
+}
+
+/* --- General Body & Typography --- */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: 15px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+/* --- Sidebar Styling --- */
+.sidebar {
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+.sidebar .nav-link {
+  color: var(--sidebar-text);
+  border-radius: 8px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.sidebar .nav-link i {
+  margin-right: 12px;
+  font-size: 1.1rem;
+}
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+  background-color: var(--sidebar-hover-bg);
+  color: #fff;
+}
+.sidebar .nav-item .nav-link strong {
+  color: #fff;
+}
+
+/* --- Main Content & Cards --- */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 25px var(--shadow-color);
+  background-color: var(--card-background-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px var(--shadow-color);
+}
+
+.card-header {
+  background-color: transparent;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 600;
+  padding: 1rem 1.25rem;
+}
+
+/* --- Button Styling --- */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 0.75rem 1.25rem;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  color: white;
+}
+
+.btn-outline-secondary {
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary-color);
+}
+.btn-outline-secondary:hover {
+  background-color: var(--text-secondary-color);
+  color: white;
+}
+
+/* --- Form Styling --- */
+.form-control,
+.form-select {
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.2);
+}
+
+/* --- Table Styling --- */
+.table {
+  background-color: var(--card-background-color);
+}
+.table thead th {
+  border-bottom: 2px solid var(--border-color);
+  font-weight: 600;
+  color: var(--text-secondary-color);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* --- Login/Auth Page Specific --- */
+.auth-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--primary-gradient);
+}
+.auth-wrapper .card {
+  width: 100%;
+  max-width: 420px;
+}

@@ -6,30 +6,28 @@
     <h1 class="h2">Confirmar Exclusão</h1>
   </div>
 
-  <div class="card shadow-sm border-danger">
+  <div class="card shadow-sm">
     <div class="card-header bg-danger text-white">
-      <h5 class="my-0 font-weight-normal">Atenção! Ação irreversível.</h5>
+      <h5 class="my-0">Atenção! Ação irreversível.</h5>
     </div>
     <div class="card-body">
       <p>
         Você tem certeza que deseja excluir permanentemente o membro
-        <strong>{{ object.name }}</strong
-        >?
+        <strong>{{ object.name }}</strong>?
       </p>
       <p class="text-muted">
         Todos os dados associados a este membro, como registros de contribuições,
         serão perdidos.
       </p>
-      <form method="post" class="mt-4">
+      <form method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">
-          <i class="bi bi-trash me-1"></i>Sim, excluir
+        <hr class="my-4" />
+        <button type="submit" class="w-100 btn btn-danger btn-lg">
+          Sim, excluir
         </button>
-        <a
-          href="{% url 'members_list' %}"
-          class="btn btn-secondary"
-          ><i class="bi bi-x-circle me-1"></i>Cancelar</a
-        >
+        <a href="{% url 'members_list' %}" class="w-100 btn btn-secondary mt-2">
+          Cancelar
+        </a>
       </form>
     </div>
   </div>

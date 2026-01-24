@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% load widget_tweaks %} {% block content %}
+<div class="container mt-4">
+  <div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+  >
+    <h1 class="h2">Adicionar Nova Contribuição</h1>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <form method="post">
+        {% csrf_token %}
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">{{ form.member.label }}</label>
+            {% render_field form.member class="form-select" %}
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">{{ form.date.label }}</label>
+            {% render_field form.date class="form-control" %}
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">{{ form.value.label }}</label>
+            {% render_field form.value class="form-control" %}
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">{{ form.type.label }}</label>
+            {% render_field form.type class="form-select" %}
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">{{ form.payment_method.label }}</label>
+            {% render_field form.payment_method class="form-select" %}
+          </div>
+          <div class="col-12">
+            <label class="form-label">{{ form.notes.label }}</label>
+            {% render_field form.notes class="form-control" rows="3" %}
+          </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <button class="w-100 btn btn-primary btn-lg" type="submit">
+          Salvar Contribuição
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
