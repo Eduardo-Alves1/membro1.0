@@ -2,8 +2,10 @@ import openpyxl
 from django.http import HttpResponse
 from typing import Any
 from django.db.models.query import QuerySet
-from cadmember.models import Member, Contribution
-from cadmember.forms import MemberForm, ContributionForm
+from cadmember.models import Member
+from finance.models import Contribution
+from cadmember.forms import MemberForm
+from finance.forms import ContributionForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic import (
@@ -89,8 +91,6 @@ class ContributionCreateView(CreateView):
     form_class = ContributionForm
     template_name = "contribution_form.html"
     success_url = "/contributions/"
-
-
 
 
 def exporta_excel(request):
