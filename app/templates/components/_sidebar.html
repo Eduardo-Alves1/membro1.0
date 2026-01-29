@@ -6,7 +6,7 @@
   <hr />
   <ul class="nav nav-pills flex-column mb-auto">
     {% if user.is_authenticated %}
-    
+
     {% url 'members_list' as members_list_url %}
     <li class="nav-item">
       <a href="{{ members_list_url }}" class="nav-link text-white {% if request.path == members_list_url %}active{% endif %}">
@@ -19,29 +19,75 @@
     <li>
       <a href="{{ contributions_list_url }}" class="nav-link text-white {% if request.path == contributions_list_url %}active{% endif %}">
         <i class="bi bi-cash-coin me-2"></i>
-        Contribuições
+        Contribuicoes
       </a>
     </li>
 
     {% url 'contribution_new' as new_contribution_url %}
     <li>
-        <a href="{% url 'contribution_new' %}" class="nav-link text-white {% if request.path == new_contribution_url %}active{% endif %}">
-            <i class="bi bi-plus-circle me-2"></i>
-            Nova Contribuição
-        </a>
+      <a href="{{ new_contribution_url }}" class="nav-link text-white {% if request.path == new_contribution_url %}active{% endif %}">
+        <i class="bi bi-plus-circle me-2"></i>
+        Nova Contribuicao
+      </a>
+    </li>
+
+    {% url 'expenses_list' as expenses_list_url %}
+    <li>
+      <a href="{{ expenses_list_url }}" class="nav-link text-white {% if request.path == expenses_list_url %}active{% endif %}">
+        <i class="bi bi-cash-stack me-2"></i>
+        Saidas
+      </a>
+    </li>
+
+    {% url 'expense_new' as expense_new_url %}
+    <li>
+      <a href="{{ expense_new_url }}" class="nav-link text-white {% if request.path == expense_new_url %}active{% endif %}">
+        <i class="bi bi-plus-circle me-2"></i>
+        Nova Saida
+      </a>
+    </li>
+
+    {% url 'finance_dashboard' as finance_dashboard_url %}
+    <li>
+      <a href="{{ finance_dashboard_url }}" class="nav-link text-white {% if request.path == finance_dashboard_url %}active{% endif %}">
+        <i class="bi bi-graph-up-arrow me-2"></i>
+        Dashboard Financeiro
+      </a>
+    </li>
+
+    {% url 'finance_report' as finance_report_url %}
+    <li>
+      <a href="{{ finance_report_url }}" class="nav-link text-white {% if request.path == finance_report_url %}active{% endif %}">
+        <i class="bi bi-file-earmark-text me-2"></i>
+        Relatorio Financeiro
+      </a>
     </li>
 
     {% if user.is_superuser %}
     <hr>
     {% url 'register' as register_url %}
     <li>
-      <a href="{% url 'register' %}" class="nav-link text-white {% if request.path == register_url %}active{% endif %}">
+      <a href="{{ register_url }}" class="nav-link text-white {% if request.path == register_url %}active{% endif %}">
         <i class="bi bi-person-plus me-2"></i>
-        Novo Usuário
+        Novo Usuario
+      </a>
+    </li>
+    {% url 'users_list' as users_list_url %}
+    <li>
+      <a href="{{ users_list_url }}" class="nav-link text-white {% if request.path == users_list_url %}active{% endif %}">
+        <i class="bi bi-people me-2"></i>
+        Usuarios
+      </a>
+    </li>
+    {% url 'groups_list' as groups_list_url %}
+    <li>
+      <a href="{{ groups_list_url }}" class="nav-link text-white {% if request.path == groups_list_url %}active{% endif %}">
+        <i class="bi bi-shield-lock me-2"></i>
+        Grupos
       </a>
     </li>
     {% endif %}
-    
+
     {% endif %}
   </ul>
   <hr />
@@ -57,4 +103,3 @@
   </div>
   {% endif %}
 </div>
-

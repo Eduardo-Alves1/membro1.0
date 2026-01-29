@@ -1,0 +1,108 @@
+{% extends 'base.html' %} {% load custom_filters %} {% block content %}
+<div class="container mt-4">
+  <div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+  >
+    <h1 class="h2">Relatorio Financeiro</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <a
+        href="{% url 'finance_report_export' %}?start_date={{ start_date }}&end_date={{ end_date }}"
+        class="btn btn-sm btn-outline-success"
+      >
+        Exportar XLSX
+      </a>
+      <a href="{% url 'finance_dashboard' %}" class="btn btn-sm btn-outline-secondary ms-2">
+        Grafico
+      </a>
+    </div>
+  </div>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-header">
+      <h5 class="my-0 font-weight-normal">Filtro por periodo</h5>
+    </div>
+    <div class="card-body">
+      <form method="get" class="row g-3">
+        <div class="col-md-4">
+          <label for="start_date" class="form-label">Data Inicial</label>
+          <input
+            type="date"
+            name="start_date"
+            id="start_date"
+            class="form-control"
+            value="{{ start_date }}"
+          />
+        </div>
+        <div class="col-md-4">
+          <label for="end_date" class="form-label">Data Final</label>
+          <input
+            type="date"
+            name="end_date"
+            id="end_date"
+            class="form-control"
+            value="{{ end_date }}"
+          />
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+          <button type="submit" class="btn btn-primary w-100">Aplicar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-muted">Entradas</div>
+          <div class="fs-4">{{ contributions_total|moeda_br }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-muted">Saidas</div>
+          <div class="fs-4">{{ expenses_total|moeda_br }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-muted">Saldo</div>
+          <div class="fs-4">{{ balance|moeda_br }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title">Entradas por tipo</h5>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in by_type %}
+            <tr>
+              <td>{{ row.type }}</td>
+              <td>{{ row.total|moeda_br }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="2" class="text-center">Sem dados no periodo.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

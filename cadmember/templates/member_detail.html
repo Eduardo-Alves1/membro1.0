@@ -29,6 +29,17 @@
               {{ member.city_birth }} / {{ member.state_birth }}
             </dd>
 
+            <dt class="col-sm-4">Endereco de Nascimento</dt>
+            <dd class="col-sm-8">
+              {{ member.birth_address|default:"-" }}
+              {% if member.birth_address_number %}
+              , {{ member.birth_address_number }}
+              {% endif %}
+            </dd>
+
+            <dt class="col-sm-4">CEP Nascimento</dt>
+            <dd class="col-sm-8">{{ member.birth_cep|default:"-" }}</dd>
+
             <dt class="col-sm-4">Data de Batismo</dt>
             <dd class="col-sm-8">
               {{ member.date_baptism | date:"d/m/Y" }}
@@ -37,21 +48,26 @@
         </div>
         <div class="col-md-6">
           <dl class="row">
-            <dt class="col-sm-4">Endereço</dt>
-            <dd class="col-sm-8">{{ member.address }}</dd>
+            <dt class="col-sm-4">EndereÃ§o</dt>
+            <dd class="col-sm-8">
+              {{ member.address }}
+              {% if member.address_number %}
+              , {{ member.address_number }}
+              {% endif %}
+            </dd>
 
             <dt class="col-sm-4">CEP</dt>
             <dd class="col-sm-8">{{ member.cep }}</dd>
 
             <dt class="col-sm-4">Telefone</dt>
-            <dd class="col-sm-8">{{ member.telephone | default:"Não informado" }}</dd>
+            <dd class="col-sm-8">{{ member.telephone | default:"NÃ£o informado" }}</dd>
 
-            <dt class="col-sm-4">É Dizimista?</dt>
+            <dt class="col-sm-4">Ã‰ Dizimista?</dt>
             <dd class="col-sm-8">
               {% if member.dizimista %}
               <span class="badge bg-success">Sim</span>
               {% else %}
-              <span class="badge bg-secondary">Não</span>
+              <span class="badge bg-secondary">NÃ£o</span>
               {% endif %}
             </dd>
           </dl>

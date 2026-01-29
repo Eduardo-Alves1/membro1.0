@@ -1,0 +1,54 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mt-4">
+  <div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+  >
+    <h1 class="h2">Permissoes do Usuario</h1>
+    <a href="{% url 'users_list' %}" class="btn btn-sm btn-outline-secondary">
+      Voltar
+    </a>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h5 class="mb-3">{{ user_obj.username }}</h5>
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="form-check">
+              {{ form.is_active }}
+              <label class="form-check-label" for="{{ form.is_active.id_for_label }}">
+                Usuario ativo
+              </label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-check">
+              {{ form.is_staff }}
+              <label class="form-check-label" for="{{ form.is_staff.id_for_label }}">
+                Acesso administrativo
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">{{ form.groups.label }}</label>
+            {{ form.groups }}
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">{{ form.user_permissions.label }}</label>
+            {{ form.user_permissions }}
+          </div>
+        </div>
+
+        <hr class="my-4" />
+        <button class="w-100 btn btn-primary btn-lg" type="submit">
+          Salvar Permissoes
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

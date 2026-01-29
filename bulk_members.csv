@@ -1,0 +1,6 @@
+name,cpf,date_birth,city_birth,state_birth,date_baptism,address,cep,bairro,city,state,dizimista,telephone
+João Silva Santos,12345678901,1980-05-15,São Paulo,SP,1995-08-20,Rua das Flores 123,01310100,Centro,São Paulo,SP,true,11987654321
+Maria Oliveira Costa,98765432101,1985-09-22,Rio de Janeiro,RJ,2000-11-10,Avenida Paulista 500,01310200,Bela Vista,São Paulo,SP,true,11988776655
+Carlos Mendes Ferreira,55544433322,1990-03-10,Belo Horizonte,MG,2005-06-15,Rua das Pedras 789,30130100,Funcionários,Belo Horizonte,MG,false,31987654321
+Ana Paula Rodrigues,11122233344,1988-07-08,Salvador,BA,2003-09-20,Avenida Costa 456,40140160,Ondina,Salvador,BA,true,71987654321
+Pedro Gonçalves Lima,99988877766,1975-12-03,Brasília,DF,1992-01-25,Quadra 506 Bloco A,70340000,Asa Norte,Brasília,DF,true,61987654321

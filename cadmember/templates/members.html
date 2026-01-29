@@ -82,4 +82,46 @@
     </div>
   </div>
 </div>
+
+{% for message in messages %}
+  {% if "success" in message.tags %}
+    <div
+      class="modal fade"
+      id="successModal{{ forloop.counter }}"
+      tabindex="-1"
+      aria-labelledby="successModalLabel{{ forloop.counter }}"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="successModalLabel{{ forloop.counter }}">
+              Cadastro
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Fechar"
+            ></button>
+          </div>
+          <div class="modal-body text-center">
+            {{ message }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const modalEl = document.getElementById(
+          "successModal{{ forloop.counter }}"
+        );
+        if (modalEl) {
+          const modal = new bootstrap.Modal(modalEl);
+          modal.show();
+        }
+      });
+    </script>
+  {% endif %}
+{% endfor %}
 {% endblock content %}

@@ -15,6 +15,7 @@ from django.views.generic import (
     DeleteView,
     DetailView,
 )
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 @method_decorator(login_required(login_url="login"), name="dispatch")
@@ -32,11 +33,12 @@ class MembersListView(ListView):
 
 
 @method_decorator(login_required(login_url="login"), name="dispatch")
-class NewMemberCreateView(CreateView):
+class NewMemberCreateView(SuccessMessageMixin, CreateView):
     model = Member
     form_class = MemberForm
     template_name = "new_member.html"
     success_url = "/members/"
+    success_message = "Cadastro realizado com sucesso!"
 
 
 @method_decorator(login_required(login_url="login"), name="dispatch")

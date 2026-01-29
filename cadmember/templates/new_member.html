@@ -31,40 +31,103 @@
             {% render_field form.date_birth type="date" class="form-control" %}
           </div>
 
-          <div class="col-md-4">
-            <label class="form-label">{{ form.city_birth.label }}</label>
-            {% render_field form.city_birth class="form-select" %}
-          </div>
-
-          <div class="col-md-4">
-            <label class="form-label">{{ form.state_birth.label }}</label>
-            {% render_field form.state_birth class="form-select" %}
-          </div>
-
           <div class="col-md-6">
             <label class="form-label">{{ form.address.label }}</label>
             {% render_field form.address class="form-control" id="id_address" %}
           </div>
-          
-          <div class="col-md-3">
+
+          <div class="col-md-2">
+            <label class="form-label">Numero da residencia</label>
+            {% render_field form.address_number class="form-control" id="id_address_number" %}
+          </div>
+
+          <div class="col-md-4">
             <label class="form-label">{{ form.bairro.label }}</label>
             {% render_field form.bairro class="form-control" id="id_bairro" %}
           </div>
 
-          <div class="col-md-3">
+          <div class="col-md-2">
             <label class="form-label">{{ form.cep.label }}</label>
             {% render_field form.cep class="form-control" id="id_cep" %}
             <span id="cep-status" class="form-text"></span>
           </div>
-          
+
           <div class="col-md-6">
             <label class="form-label">{{ form.state.label }}</label>
             {% render_field form.state class="form-select" id="id_state" %}
           </div>
-          
+
           <div class="col-md-6">
             <label class="form-label">{{ form.city.label }}</label>
             {% render_field form.city class="form-select" id="id_city" %}
+          </div>
+
+          <div class="col-12">
+            <div class="form-check mt-2">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="id_same_birth_address"
+                checked
+              />
+              <label class="form-check-label" for="id_same_birth_address">
+                Esse endereço é o mesmo de nascimento?
+              </label>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div id="birth-address-section" class="border rounded p-3 d-none">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <h5 class="mb-0">Endereco de Nascimento</h5>
+              </div>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label"
+                    >{{ form.birth_address.label }}</label
+                  >
+                  {% render_field form.birth_address class="form-control"
+                  id="id_birth_address" %}
+                </div>
+
+                <div class="col-md-2">
+                  <label class="form-label"
+                    >Numero do endereco de nascimento</label
+                  >
+                  {% render_field form.birth_address_number class="form-control"
+                  id="id_birth_address_number" %}
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label"
+                    >{{ form.birth_bairro.label }}</label
+                  >
+                  {% render_field form.birth_bairro class="form-control"
+                  id="id_birth_bairro" %}
+                </div>
+
+                <div class="col-md-2">
+                  <label class="form-label">{{ form.birth_cep.label }}</label>
+                  {% render_field form.birth_cep class="form-control"
+                  id="id_birth_cep" %}
+                  <span id="birth-cep-status" class="form-text"></span>
+                </div>
+
+                <div class="col-md-5">
+                  <label class="form-label">{{ form.city_birth.label }}</label>
+                  {% render_field form.city_birth class="form-control"
+                  id="id_birth_city" %}
+                </div>
+
+                <div class="col-md-5">
+                  <label class="form-label">{{ form.state_birth.label }}</label>
+                  {% render_field form.state_birth class="form-control"
+                  id="id_birth_state" %}
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="col-md-6">
@@ -82,8 +145,12 @@
 
         <hr class="my-4" />
 
-        <button type="submit" class="w-100 btn btn-primary btn-lg">Salvar</button>
-        <a href="{% url 'members_list' %}" class="w-100 btn btn-secondary mt-2">Cancelar</a>
+        <button type="submit" class="w-100 btn btn-primary btn-lg">
+          Salvar
+        </button>
+        <a href="{% url 'members_list' %}" class="w-100 btn btn-secondary mt-2"
+          >Cancelar</a
+        >
       </form>
     </div>
   </div>
@@ -94,23 +161,69 @@
   document.addEventListener("DOMContentLoaded", function () {
     const cepInput = document.getElementById("id_cep");
     const statusSpan = document.getElementById("cep-status");
+    const birthCepInput = document.getElementById("id_birth_cep");
+    const birthStatusSpan = document.getElementById("birth-cep-status");
+    const sameBirthCheckbox = document.getElementById("id_same_birth_address");
+    const birthSection = document.getElementById("birth-address-section");
 
-    if (cepInput && statusSpan) {
-      cepInput.addEventListener("blur", function () {
+    const residenceFields = {
+      address: document.getElementById("id_address"),
+      number: document.getElementById("id_address_number"),
+      bairro: document.getElementById("id_bairro"),
+      cep: document.getElementById("id_cep"),
+      city: document.getElementById("id_city"),
+      state: document.getElementById("id_state"),
+    };
+
+    const birthFields = {
+      address: document.getElementById("id_birth_address"),
+      number: document.getElementById("id_birth_address_number"),
+      bairro: document.getElementById("id_birth_bairro"),
+      cep: document.getElementById("id_birth_cep"),
+      city: document.getElementById("id_birth_city"),
+      state: document.getElementById("id_birth_state"),
+    };
+
+    function syncBirthFromResidence() {
+      if (!sameBirthCheckbox.checked) {
+        return;
+      }
+      birthFields.address.value = residenceFields.address.value || "";
+      birthFields.number.value = residenceFields.number.value || "";
+      birthFields.bairro.value = residenceFields.bairro.value || "";
+      birthFields.cep.value = residenceFields.cep.value || "";
+      birthFields.city.value = residenceFields.city.value || "";
+      birthFields.state.value = residenceFields.state.value || "";
+    }
+
+    function toggleBirthSection() {
+      if (sameBirthCheckbox.checked) {
+        birthSection.classList.add("d-none");
+        syncBirthFromResidence();
+      } else {
+        birthSection.classList.remove("d-none");
+      }
+    }
+
+    function bindCepLookup(input, status, map) {
+      if (!input || !status) {
+        return;
+      }
+      input.addEventListener("blur", function () {
         const cep = this.value.replace(/\D/g, "");
-        
-        // Clear previous status
-        statusSpan.textContent = "";
-        statusSpan.className = "form-text";
+        status.textContent = "";
+        status.className = "form-text";
 
         if (cep.length === 8) {
-          statusSpan.textContent = "Buscando...";
-          statusSpan.classList.add("text-muted");
+          status.textContent = "Buscando...";
+          status.classList.add("text-muted");
 
           fetch(`/api/get-address/${cep}/`)
             .then((response) => {
               if (!response.ok) {
-                return response.json().then(err => { throw new Error(err.error || 'Erro de comunicação.'); });
+                return response.json().then((err) => {
+                  throw new Error(err.error || "Erro de comunicaÃ§Ã£o.");
+                });
               }
               return response.json();
             })
@@ -118,22 +231,40 @@
               if (data.error) {
                 throw new Error(data.error);
               }
-              
-              document.getElementById("id_address").value = data.address;
-              document.getElementById("id_bairro").value = data.bairro;
-              document.getElementById("id_state").value = data.state;
-              document.getElementById("id_city").value = data.city;
-              statusSpan.textContent = "Endereço preenchido!";
-              statusSpan.className = "form-text text-success";
+
+              map.address.value = data.address;
+              map.bairro.value = data.bairro;
+              map.state.value = data.state;
+              map.city.value = data.city;
+              status.textContent = "EndereÃ§o preenchido!";
+              status.className = "form-text text-success";
+
+              if (sameBirthCheckbox.checked) {
+                syncBirthFromResidence();
+              }
             })
             .catch((error) => {
               console.error("Erro na busca de CEP:", error);
-              statusSpan.textContent = error.message || "CEP não encontrado.";
-              statusSpan.className = "form-text text-danger";
+              status.textContent = error.message || "CEP nÃ£o encontrado.";
+              status.className = "form-text text-danger";
             });
         }
       });
     }
+
+    if (sameBirthCheckbox) {
+      sameBirthCheckbox.addEventListener("change", toggleBirthSection);
+    }
+
+    Object.values(residenceFields).forEach((field) => {
+      if (field) {
+        field.addEventListener("input", syncBirthFromResidence);
+      }
+    });
+
+    bindCepLookup(cepInput, statusSpan, residenceFields);
+    bindCepLookup(birthCepInput, birthStatusSpan, birthFields);
+    toggleBirthSection();
   });
 </script>
 {% endblock javascript %} {% endblock content %}

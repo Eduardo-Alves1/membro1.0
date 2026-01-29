@@ -3,13 +3,13 @@
   <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
   >
-    <h1 class="h2">Lista de Contribuicoes</h1>
+    <h1 class="h2">Lista de Saidas</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <a
-        href="{% url 'contribution_new' %}"
+        href="{% url 'expense_new' %}"
         class="btn btn-sm btn-outline-primary"
       >
-        Adicionar Contribuicao
+        Adicionar Saida
       </a>
       <a
         href="{% url 'finance_report' %}"
@@ -32,16 +32,6 @@
     </div>
     <div class="card-body">
       <form method="get" class="row g-3">
-        <div class="col-md-4">
-          <label for="search_member" class="form-label">Nome do Membro</label>
-          <input
-            type="text"
-            name="search_member"
-            id="search_member"
-            class="form-control"
-            value="{{ request.GET.search_member }}"
-          />
-        </div>
         <div class="col-md-3">
           <label for="start_date" class="form-label">Data Inicial</label>
           <input
@@ -62,6 +52,17 @@
             value="{{ request.GET.end_date }}"
           />
         </div>
+        <div class="col-md-4">
+          <label for="category" class="form-label">Categoria</label>
+          <select class="form-select" name="category" id="category">
+            <option value="">Todas</option>
+            {% for key, label in expenses.model.CATEGORY_CHOICES %}
+            <option value="{{ key }}" {% if request.GET.category == key %}selected{% endif %}>
+              {{ label }}
+            </option>
+            {% endfor %}
+          </select>
+        </div>
         <div class="col-md-2 d-flex align-items-end">
           <button type="submit" class="btn btn-primary w-100">Filtrar</button>
         </div>
@@ -74,31 +75,26 @@
       <thead>
         <tr>
           <th>Data</th>
-          <th>Membro</th>
+          <th>Descricao</th>
+          <th>Categoria</th>
           <th>Valor (R$)</th>
-          <th>Tipo</th>
-          <th>Forma de Pagamento</th>
-          <th>Acoes</th>
+          <th>Pagamento</th>
+          <th>Notas</th>
         </tr>
       </thead>
       <tbody>
-        {% for contribution in contributions %}
+        {% for expense in expenses %}
         <tr>
-          <td>{{ contribution.date|date:"d/m/Y" }}</td>
-          <td>{{ contribution.member.name }}</td>
-          <td>{{ contribution.value|moeda_br }}</td>
-          <td>{{ contribution.get_type_display }}</td>
-          <td>{{ contribution.get_payment_method_display }}</td>
-          <td>
-            {# Futuros botoes de editar/deletar aqui #}
-            <a href="#" class="btn btn-sm btn-outline-secondary">Editar</a>
-          </td>
+          <td>{{ expense.date|date:"d/m/Y" }}</td>
+          <td>{{ expense.description }}</td>
+          <td>{{ expense.get_category_display }}</td>
+          <td>{{ expense.value|moeda_br }}</td>
+          <td>{{ expense.get_payment_method_display }}</td>
+          <td>{{ expense.notes|default:"-" }}</td>
         </tr>
         {% empty %}
         <tr>
-          <td colspan="6" class="text-center">
-            Nenhuma contribuicao encontrada.
-          </td>
+          <td colspan="6" class="text-center">Nenhuma saida encontrada.</td>
         </tr>
         {% endfor %}
       </tbody>
