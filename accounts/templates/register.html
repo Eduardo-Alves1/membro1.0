@@ -30,20 +30,20 @@
 
       {% if form.errors %}
       <div class="alert alert-danger mt-3">
-          {% for field, error_list in form.errors.items %}
-              {% for error in error_list %}
-                  <div>{{ field }}: {{ error }}</div>
-              {% endfor %}
-          {% endfor %}
+        {% for field, error_list in form.errors.items %}
+        {% for error in error_list %}
+        <div>{{ field }}: {{ error }}</div>
+        {% endfor %}
+        {% endfor %}
       </div>
       {% endif %}
 
       <hr class="my-4" />
 
-      <button class="w-100 btn btn-primary btn-lg" type="submit">
+      <a href="{% url 'users_list' %}" class="btn btn-primary w-100 btn-lg" type="submit">
         Registrar
-      </button>
-      <a href="{% url 'members_list' %}" class="btn btn-secondary w-100 mt-2">Cancelar</a>
+      </a>
+      <a href="{% url 'users_list' %}" class="btn btn-secondary w-100 mt-2">Cancelar</a>
     </form>
   </div>
 </div>
